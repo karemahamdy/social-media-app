@@ -16,8 +16,13 @@ axios.get('https://tarmeezacademy.com/api/v1/posts?limit=50')
 const showPosts = function(posts) {
   document.getElementById('posts').innerHTML = ''
   console.log(posts)
+
   for (post of posts) {
     console.log(post)
+    let postTitle = ''
+    if(post.title != null) {
+      postTitle = post.title 
+    }
     const content = `
       <div class="post">
                 <div class="post-top">
@@ -25,7 +30,8 @@ const showPosts = function(posts) {
                         <img src="${post.image}" alt="">
                     </div>
                     <div class="post-info">
-                        <p class="name">${post.username
+                        <p class="name">${post.author.
+                          username
                         }</p>
                         <span class="time">${post.
                           created_at
@@ -35,7 +41,9 @@ const showPosts = function(posts) {
                 </div>
 
                 <div class="post-content">
-                  ${post.body}
+                  <p> ${post.body} </p>
+                  <img class="w-100" src="${post.image}" alt="">
+                  <p>${postTitle}</p>
                 </div>
                 
                 <div class="post-bottom">
