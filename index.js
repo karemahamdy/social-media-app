@@ -1,4 +1,5 @@
-axios.get('https://tarmeezacademy.com/api/v1/posts?limit=50')
+let baseUrl = "https://tarmeezacademy.com/api/v1"
+axios.get(`${baseUrl}/posts?limit=50`)
   .then(response  => {
     // console.log(post);
     if (response.status == 200) {
@@ -62,7 +63,26 @@ const showPosts = function(posts) {
                 </div>
             </div>    
     `
-    document.getElementById('posts').innerHTML += content
-
+    document.getElementById('posts').innerHTML += content,
+    onClickLogin()
+    axios.post()
 
   } }
+  
+  // login 
+  // const onClickLogin = function(){
+  //    axios.get("https://tarmeezacademy.com/api/v1/login").g
+    
+  // }
+
+  function onClickLogin() {
+   const userName = document.getElementById("email").value 
+   const password = document.getElementById("password").value 
+   console.log(userName,password)
+
+   const param = {
+    "username": userName,
+    "password" : password
+   }
+  }
+  onClickLogin()
