@@ -1,5 +1,7 @@
-let baseUrl = "https://tarmeezacademy.com/api/v1"
-axios.get(`${baseUrl}/posts?limit=50`)
+
+let baseUrl = "https://tarmeezacademy.com/api/v1/";
+
+axios.get(`${baseUrl}posts?limit=50`)
   .then(response  => {
     // console.log(post);
     if (response.status == 200) {
@@ -16,10 +18,9 @@ axios.get(`${baseUrl}/posts?limit=50`)
   // show post in ui
 const showPosts = function(posts) {
   document.getElementById('posts').innerHTML = ''
-  console.log(posts)
+  
 
   for (post of posts) {
-    console.log(post)
     let postTitle = ''
     if(post.title != null) {
       postTitle = post.title 
@@ -63,19 +64,12 @@ const showPosts = function(posts) {
                 </div>
             </div>    
     `
-    document.getElementById('posts').innerHTML += content,
-    onClickLogin()
-    axios.post()
-
+    document.getElementById('posts').innerHTML += content;
   } }
   
-  // login 
-  // const onClickLogin = function(){
-  //    axios.get("https://tarmeezacademy.com/api/v1/login").g
-    
-  // }
 
   function onClickLogin() {
+
    const userName = document.getElementById("email").value 
    const password = document.getElementById("password").value 
    console.log(userName,password)
@@ -84,5 +78,14 @@ const showPosts = function(posts) {
     "username": userName,
     "password" : password
    }
+   axios.post(`${baseUrl}login`,param).then(response  => { 
+    console.log(response.data)
+    if (response.data.success) {
+      window.location.href = "index.html";
+      console.log("Redirecting to index.html");
+    } else {
+      console.log("Invalid credentials");
+    }  
+  })
   }
   onClickLogin()
