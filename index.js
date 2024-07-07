@@ -83,7 +83,12 @@ const showPosts = function(posts) {
     // add to local storage
     localStorage.setItem("token", response.data.token)
     localStorage.setItem("user", JSON.stringify(response.data.user))
-   })
+    if (response.status === 200) {
       window.location.assign("index.html");
+      console.log("Redirecting to index.html");
+    } else {
+      console.log("Invalid credentials");
+    }  
+  })
   }
   onClickLogin()
