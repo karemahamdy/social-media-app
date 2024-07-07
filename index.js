@@ -92,3 +92,12 @@ const showPosts = function(posts) {
   })
   }
   onClickLogin()
+
+  function logOut() {
+  
+    localStorage.removeItem("token")
+    localStorage.removeItem("user")
+    window.location.assign("login.html");
+  }
+
+  logOut()
