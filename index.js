@@ -80,12 +80,10 @@ const showPosts = function(posts) {
    }
    axios.post(`${baseUrl}login`,param).then(response  => { 
     console.log(response.data)
-    if (response.data.success) {
-      window.location.href = "index.html";
-      console.log("Redirecting to index.html");
-    } else {
-      console.log("Invalid credentials");
-    }  
-  })
+    // add to local storage
+    localStorage.setItem("token", response.data.token)
+    localStorage.setItem("user", JSON.stringify(response.data.user))
+   })
+      window.location.assign("index.html");
   }
   onClickLogin()
