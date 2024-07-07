@@ -101,3 +101,33 @@ const showPosts = function(posts) {
   }
 
   logOut()
+
+  // register
+
+  function onClickRegister() {
+    const email = document.getElementById("email-register").value
+    const userName = document.getElementById("username-register").value 
+    const password = document.getElementById("password-register").value 
+    console.log(userName,password,email)
+ 
+    const param = {
+     "username": userName,
+     "password" : password,
+     "email" : email
+    }
+    axios.post(`${baseUrl}login`,param).then(response  => { 
+     console.log(response.data)
+     console.log("confirm")
+     // add to local storage
+     localStorage.setItem("token", response.data.token)
+     localStorage.setItem("user", JSON.stringify(response.data.user))
+     localStorage.setItem("email", JSON.stringify(response.data.email))
+     if (response.status === 200) {
+       window.location.assign("index.html");
+       console.log("Redirecting to index.html");
+     } else {
+       console.log("Invalid credentials");
+     }  
+   })
+   }
+   onClickRegister()
